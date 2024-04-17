@@ -1,0 +1,127 @@
+<resources>
+    <string name="app_name">Fondos_de_pantalla</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="desarrollador">Desarrollado por: Luciano</string>
+    <!--Menu admin-->
+    <string name="InicioAdmin">Inicio</string>
+    <string name="PerfilAdmin">Perfil</string>
+    <string name="RegistarAdmin">Registrar</string>
+    <string name="ListarAdmin">Lista de Administradores</string>
+    <string name="Salir">Cerrar cesion</string>
+
+    <!--Menu Cliente-->
+    <string name="OpcionesTxt">Opciones</string>
+    <string name="InicioCliente">Inicio</string>
+
+    <string name="MasOpcionesTxt">Mas opciones</string>
+    <string name="Acercade">Acerca de</string>
+    <string name="Compartir">Compartir</string>
+
+    <string name="Acceder">Acceder</string>
+
+
+    <!--Registro de administradores-->
+    <string name="RegistroTXT">Registro de administradores</string>
+    <string name="Correo">Correo electronico</string>
+    <string name="Password">Contrasena</string>
+    <string name="Nombres">Nombres completos</string>
+    <string name="Apellidos">Apellidos</string>
+    <string name="Edad">Edad</string>
+    <string name="FechaRegistro">Fecha de registro</string>
+    <string name="Registrar">Registrar</string>
+
+    <!--Login de administradores-->
+    <string name="LoginTXT">Login de administradores</string>
+    <string name="Ingresar">Ingresar</string>
+
+
+    <!--Categorias-->
+    <string name="EligeUnaCategoriaTXT">Elige Categoria</string>
+    <string name="Peliculas">Peliculas</string>
+    <string name="Series">Series</string>
+    <string name="Musica">Musica</string>
+    <string name="VideoJuegos">VideoJuegos</string>
+
+    <!--Menu parte superior derecha-->
+    <string name="Agregar">Agregar</string>
+    <string name="Vista">Vista</string>
+
+
+    <!-- Agregar peliculas-->
+    <string name="NombreTXTPeliculas">Nombre de imagenes</string>
+    <string name="NombrePeliculas">Escriba nombre aqui</string>
+    <string name="VistaPeliculas">0</string>
+    <string name="PublicarPelicula">Publicar</string>
+
+
+    <!-- Agregar musica-->
+    <string name="NombreTXTMusica">Nombre de imagenes</string>
+    <string name="NombreMusica">Escriba nombre aqui</string>
+    <string name="VistaMusica">0</string>
+    <string name="PublicarMusica">Publicar</string>
+
+    <!-- Agregar serie-->
+    <string name="NombreTXTSerie">Nombre de imagenes</string>
+    <string name="NombreSerie">Escriba nombre aqui</string>
+    <string name="VistaSerie">0</string>
+    <string name="PublicarSerie">Publicar</string>
+
+    <!-- Agregar videojuegos-->
+    <string name="NombreTXTVideoJuegos">Nombre de imagenes</string>
+    <string name="NombreVideoJuegos">Escriba nombre aqui</string>
+    <string name="VistaVideoJuegos">0</string>
+    <string name="PublicarVideoJuegos">Publicar</string>
+
+
+    <!-- Item peliculas-->
+    <string name="NombreImagenPelicula"> -- </string>
+    <string name="VistaPelicula"> -- </string>
+
+    <!-- Item musica-->
+    <string name="NombreImagen_Musica"> -- </string>
+    <string name="Vista_Musica"> -- </string>
+
+    <!-- Item serie-->
+    <string name="NombreImagen_Serie"> -- </string>
+    <string name="Vista_Serie"> -- </string>
+
+    <!-- Item serie-->
+    <string name="NombreImagen_VideoJuegos"> -- </string>
+    <string name="Vista_VideoJuegos"> -- </string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Perfil -->
+    <string name="PERFILADMINISTRADORTXT">MI PERFIL</string>
+    <string name="MIINFORMACIONTXT">MI INFORMACION</string>
+    <string name="UIDPERFILTXT">Uid: </string>
+    <string name="UIDPERFIL">Uid: --</string>
+    <string name="NOMBRESPERFILTXT">Nombres: </string>
+    <string name="NOMBRESPERFIL"> -- </string>
+    <string name="APELLIDOSPERFILTXT">Apellidos: </string>
+    <string name="APELLIDOSPERFIL"> -- </string>
+    <string name="CORREOPERFILTXT">Correo: </string>
+    <string name="CORREOPERFIL"> -- </string>
+    <string name="PASSWORDPERFILTXT">Password: </string>
+    <string name="PASSWORDPERFIL"> -- </string>
+    <string name="EDADPERFILTXT">Edad: </string>
+    <string name="EDADPERFIL"> -- </string>
+    <string name="ACTUALIZARPASS">Actualizar Password</string>
+    <string name="ACTUALIZARDATOS">Actualizar Datos</string>
+
+<!--    cambiar contrsena -->
+    <string name="MisCredencialesTXT">Mis Credenciales</string>
+    <string name="PassActualTXT">Contrasena Actual: </string>
+    <string name="PassActual"> -- </string>
+    <string name="ActualPassET"> Contrasena Actual </string>
+    <string name="NuevoPassEt"> Nueva Contrasena </string>
+    <string name="CAMBIARPASSBTN"> CAMBIAR CONTRASENA </string>
+    <string name="IRINICIOBTN"> IR INICIO </string>
+    <string name="NOTATXT">Nota: Si cambia la contrasena, se cerrara sesion automaticamente </string>
+
+
+</resources>

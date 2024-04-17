@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "739587134366",
+    "project_id": "fondos-de-pantalla-8cbf4",
+    "storage_bucket": "fondos-de-pantalla-8cbf4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739587134366:android:eeb8e9fb6a7cb9f5157c8f",
+        "android_client_info": {
+          "package_name": "com.lsepulveda.fondos_de_pantalla"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "739587134366-7pke57pkm01pvlto1g7vi3hbql998chb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lsepulveda.fondos_de_pantalla",
+            "certificate_hash": "a98415bcb8133a56fea3a7c9edab7bbbd312da9e"
+          }
+        },
+        {
+          "client_id": "739587134366-9id401m2mqrb9bgqm25hupu3iscf7mff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxqInzgRBaXT0hKGzbFaV-Q4-8nsx1qPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739587134366-9id401m2mqrb9bgqm25hupu3iscf7mff.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

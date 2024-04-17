@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".CategoriasAdmin.VideoJuegosA.AgregarVideojuegos">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- TXT-->
+            <TextView
+                android:text="@string/NombreTXTVideoJuegos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <!-- Nombre de la imagen -->
+            <EditText
+                android:id="@+id/NombreVideoJuegos"
+                android:hint="@string/NombreVideoJuegos"
+                android:inputType="textCapWords|textAutoCorrect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
+
+            <!-- Vista -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <!-- Icono-->
+                <androidx.appcompat.widget.AppCompatImageView
+
+                    android:layout_width="25dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/vista_ico"/>
+
+                <!-- Numero de vistas se inicializa en 0 -->
+                <TextView
+                    android:id="@+id/VistaVideoJuegos"
+                    android:text="@string/VistaVideoJuegos"
+                    android:textSize="20sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- Icono para abrir la galeria -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ImagenAgregarVideoJuegos"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/imagen_ico"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <!-- Boton par publicar imagen pelicula -->
+        <Button
+            android:id="@+id/PublicarVideoJuegos"
+            android:text="@string/PublicarVideoJuegos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_personalizado"
+            android:textColor="#fff"
+            android:layout_marginTop="10dp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</RelativeLayout>

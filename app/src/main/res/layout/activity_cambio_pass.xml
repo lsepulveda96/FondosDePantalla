@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".FragmentosAdministrador.Cambio_Pass">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000"
+            android:textSize="25dp"/>
+
+<!--        contrasena actual traida de firebase-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:text="@string/PassActualTXT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/PassActual"
+                android:text="@string/PassActual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+<!--        escribir actual contrasena-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            android:layout_marginTop="15dp">
+
+            <EditText
+                android:id="@+id/ActualPassET"
+                android:hint="@string/ActualPassET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:autofillHints="no" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--        escribir nueva contrasena-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            android:layout_marginTop="15dp">
+
+            <EditText
+                android:id="@+id/NuevoPassEt"
+                android:hint="@string/NuevoPassEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        boton para cambiar contrasena-->
+        <Button
+            android:id="@+id/CAMBIARPASSBTN"
+            android:text="@string/CAMBIARPASSBTN"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_personalizado_dos"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+<!--        para ir a inicio administrador-->
+        <Button
+            android:id="@+id/IRINICIOBTN"
+            android:text="@string/IRINICIOBTN"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/btn_personalizado_dos"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</RelativeLayout>
