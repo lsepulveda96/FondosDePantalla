@@ -51,12 +51,12 @@ public class ViewHolderPelicula extends RecyclerView.ViewHolder {
 
     //desde firebase a recycler view
     public void seteoPeliculas(Context context, String nombre, int vista, String imagen){
-        ImageView imagenPelicula;
+        ImageView imagen_Pelicula;
         TextView nombreImagenPelicula;
         TextView vistaPelicula;
 
         //Conexion con el item
-        imagenPelicula = mView.findViewById(R.id.ImagenPelicula);
+        imagen_Pelicula = mView.findViewById(R.id.ImagenPelicula);
         nombreImagenPelicula = mView.findViewById(R.id.NombreImagenPelicula);
         vistaPelicula = mView.findViewById(R.id.VistaPeliculas);
 
@@ -66,14 +66,14 @@ public class ViewHolderPelicula extends RecyclerView.ViewHolder {
         String vistaString = String.valueOf(vista);
         vistaPelicula.setText(vistaString);
 
-        // controlar posibles errore
+        // controlar posibles errores
         try{
             //si la img fue traida exitosamente
-            Picasso.get().load(imagen).into(imagenPelicula);
+            Picasso.get().load(imagen).placeholder(R.drawable.categoria).into(imagen_Pelicula);
         }
         catch (Exception e){
             //si la img no se pudo traer
-            Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            Picasso.get().load(R.drawable.categoria).into(imagen_Pelicula);
         }
 
     }

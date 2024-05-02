@@ -15,7 +15,7 @@ import com.lsepulveda.fondos_de_pantalla.R;
 
 public class AcercaDeCliente extends Fragment {
 
-    Button acceder;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,13 +24,6 @@ public class AcercaDeCliente extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_acerca_de_cliente, container, false);
 
-        acceder = view.findViewById(R.id.acceder);
-        acceder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), InicioSesion.class));
-            }
-        });
 
          return view;
     }

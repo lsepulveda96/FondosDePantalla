@@ -48,10 +48,12 @@ import com.squareup.picasso.Picasso;
 import static com.google.firebase.storage.FirebaseStorage.getInstance;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class AgregarPelicula extends AppCompatActivity {
 
-    TextView vistaPeliculasTv;
+    TextView idPelicula, vistaPeliculasTv;
     ImageView imagenAgregarPelicula;
     EditText nombrePeliculasTv;
     Button publicarPeliculaBtn;
@@ -67,7 +69,7 @@ public class AgregarPelicula extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     // recuperar nombre, recuperar vista, recuperar imagen
-    String rNombre, rVista, rImagen;
+    String rId, rNombre, rVista, rImagen;
 
 //    int CODIGO_SOLICITUD_IMAGEN = 5;
 
@@ -82,6 +84,7 @@ public class AgregarPelicula extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+        idPelicula = findViewById(R.id.idPelicula);
         vistaPeliculasTv = findViewById(R.id.VistaPeliculas);
         nombrePeliculasTv = findViewById(R.id.NombrePeliculas);
         publicarPeliculaBtn = findViewById(R.id.PublicarPelicula);
@@ -93,11 +96,13 @@ public class AgregarPelicula extends AppCompatActivity {
         Bundle intent  = getIntent().getExtras();
         if(intent != null){
             // recuperar los datos de la actividad anterior
+            rId = intent.getString("IdEnviado");
             rNombre = intent.getString("NombreEnviado");
             rImagen = intent.getString("ImagenEnviada");
             rVista = intent.getString("VistaEnviada");
 
             // setear en textView y en imagen
+            idPelicula.setText(rId);
             nombrePeliculasTv.setText(rNombre);
             vistaPeliculasTv.setText(rVista);
             Picasso.get().load(rImagen).into(imagenAgregarPelicula);
@@ -201,7 +206,7 @@ public class AgregarPelicula extends AppCompatActivity {
 
         // CONSULTA
         // es el dato que no se puede repetir dos veces. (esto para mi esta mal, si hay dos nombres iguales dice que se borran). deberia tener un id
-        Query query = databaseReference.orderByChild("nombre").equalTo(rNombre);
+        Query query = databaseReference.orderByChild("id").equalTo(rId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -256,11 +261,20 @@ public class AgregarPelicula extends AppCompatActivity {
 
                     Uri downloadURI = uriTask.getResult();
 
+                    String ID = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss",
+                            Locale.getDefault()).format(System.currentTimeMillis());
+                    // ejemplo: 2021-06-30/06:03:20
+                    idPelicula.setText(ID);
+
+                    String mNombre = nombrePeliculasTv.getText().toString();
+                    String mId = idPelicula.getText().toString();
+
+
                     // se convierte a string y luego a entero, para poder almacenar la info en la db
                     String mVista = vistaPeliculasTv.getText().toString();
                     int VISTA = Integer.parseInt(mVista);
 
-                    Pelicula pelicula = new Pelicula(downloadURI.toString(),mNombre,VISTA);
+                    Pelicula pelicula = new Pelicula(mNombre+"/"+mId, downloadURI.toString(),mNombre,VISTA);
                     String ID_IMAGEN = databaseReference.push().getKey();
 
                     // los lista segun el id del imagen

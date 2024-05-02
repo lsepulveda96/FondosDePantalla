@@ -7,7 +7,6 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +18,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -41,34 +39,30 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.lsepulveda.fondos_de_pantalla.CategoriasAdmin.PeliculasA.AgregarPelicula;
-import com.lsepulveda.fondos_de_pantalla.CategoriasAdmin.PeliculasA.PeliculasA;
 import com.lsepulveda.fondos_de_pantalla.R;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class AgregarMusica extends AppCompatActivity {
 
-    TextView vistaMusicaTv;
-    ImageView imagenAgregarMusica;
-    EditText nombreMusicaTv;
-    Button publicarMusicaBtn;
+    TextView IdMusica, VistaMusica;
+    EditText NombreMusica;
+    ImageView ImagenAgregarMusica;
+    Button PublicarMusica;
 
-    // para crear la imagen dentro de esa carpeta
-    String rutaAlmacenamiento = "Musica_subida/";
-    String rutaDeBaseDeDatos = "MUSICA";
-    Uri rutaArchivoUri;
+    String RutaDeAlmacenamiento = "Musica_Subida/";
+    String RutaDeBaseDeDatos = "MUSICA";
+    Uri RutaArchivoUri;
 
     StorageReference mStorageReference;
-    DatabaseReference databaseReference;
+    DatabaseReference DatabaseReference;
 
     ProgressDialog progressDialog;
 
-    // recuperar nombre, recuperar vista, recuperar imagen
-    String rNombre, rVista, rImagen;
-
-//    int CODIGO_SOLICITUD_IMAGEN = 5;
+    String /*Se añadió en video anterior*/rId, rNombre , rImagen, rVista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,106 +75,115 @@ public class AgregarMusica extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-        vistaMusicaTv = findViewById(R.id.VistaMusica);
-        nombreMusicaTv = findViewById(R.id.NombreMusica);
-        publicarMusicaBtn = findViewById(R.id.PublicarMusica);
-        imagenAgregarMusica = findViewById(R.id.ImagenAgregarMusica);
+        IdMusica = findViewById(R.id.IdMusica);
+        VistaMusica = findViewById(R.id.VistaMusica);
+        NombreMusica = findViewById(R.id.NombreMusica);
+        ImagenAgregarMusica = findViewById(R.id.ImagenAgregarMusica);
+        PublicarMusica= findViewById(R.id.PublicarMusica);
+
         mStorageReference = FirebaseStorage.getInstance().getReference();
-        databaseReference = FirebaseDatabase.getInstance().getReference(rutaDeBaseDeDatos);
+        DatabaseReference = FirebaseDatabase.getInstance().getReference(RutaDeBaseDeDatos);
         progressDialog = new ProgressDialog(AgregarMusica.this);
 
-        Bundle intent  = getIntent().getExtras();
-        if(intent != null){
-            // recuperar los datos de la actividad anterior
+        Bundle intent = getIntent().getExtras();
+        if (intent != null){
+
+            //Recuperar los datos de la actividad anterior
+            /*Se añadió en video anterior*/
+            rId = intent.getString("IdEnviado");
             rNombre = intent.getString("NombreEnviado");
             rImagen = intent.getString("ImagenEnviada");
             rVista = intent.getString("VistaEnviada");
 
-            // setear en textView y en imagen
-            nombreMusicaTv.setText(rNombre);
-            vistaMusicaTv.setText(rVista);
-            Picasso.get().load(rImagen).into(imagenAgregarMusica);
+            //Setear
+            /*Se añadió en video anterior*/
+            IdMusica.setText(rId);
+            NombreMusica.setText(rNombre);
+            VistaMusica.setText(rVista);
+            Picasso.get().load(rImagen).into(ImagenAgregarMusica);
 
-            // cambiar nombre en actionBar
+            //cambiar el nombre actionbar
             actionBar.setTitle("Actualizar");
             String actualizar = "Actualizar";
-            // cambiar nombre del boton
-            publicarMusicaBtn.setText(actualizar);
+            //cambiar el nombre del botón
+            PublicarMusica.setText(actualizar);
+
         }
 
-        // al hacer click, abre la galeria para seleccionar una imagen. luego de esto abre un uri
-        imagenAgregarMusica.setOnClickListener(new View.OnClickListener() {
+        ImagenAgregarMusica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
-                obtenerImagenGaleria.launch(intent);
+                ObtenerImagenGaleria.launch(intent);
+
             }
         });
 
-        // ejecuta el metodo subir imagen
-        publicarMusicaBtn.setOnClickListener(new View.OnClickListener() {
+        PublicarMusica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(publicarMusicaBtn.getText().equals("Publicar")){
-                    subirImagen();
-                }else{
-                    actualizarMusica();
+                if (PublicarMusica.getText().equals("Publicar")){
+                    /*Método para subir una imagen*/
+                    SubirImagen();
+                }else {
+                    EmpezarActualizacion();
                 }
             }
         });
-
     }
 
-    private void actualizarMusica() {
+    private void EmpezarActualizacion() {
         progressDialog.setTitle("Actualizando");
-        progressDialog.setMessage("Espere por favor..");
+        progressDialog.setMessage("Espere por favor ...");
         progressDialog.show();
         progressDialog.setCancelable(false);
-        eliminarImgAnterior();
-
+        EliminarImagenAnterior();
     }
 
-    private void eliminarImgAnterior() {
-        StorageReference imagen = getInstance().getReferenceFromUrl(rImagen);
-        imagen.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+    private void EliminarImagenAnterior() {
+        StorageReference Imagen = getInstance().getReferenceFromUrl(rImagen);
+        Imagen.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onSuccess(Void unused) {
-                // si la img se elimino
-                Toast.makeText(AgregarMusica.this, "Imagen anterior ha sido eliminada", Toast.LENGTH_SHORT).show();
-                subirNuevaImg();
+            public void onSuccess(Void aVoid) {
+                //si la imagen se eliminó
+                Toast.makeText(AgregarMusica.this, "La imagen anterior a sido eliminada", Toast.LENGTH_SHORT).show();
+                SubirNuevaImagen();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                //GESTIONAR POSIBLE ERROR
                 Toast.makeText(AgregarMusica.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
             }
         });
     }
 
-    private void subirNuevaImg() {
-        //Declaramos la nueva imagen a actualizar
-        String nuevaImg = System.currentTimeMillis()+ ".png";
-        // referencia de almacenamiento para que la nueva img se pueda guardar en esa carpeta
-        StorageReference mStorageReference2 = mStorageReference.child(rutaAlmacenamiento + nuevaImg); // nombre de la carpeta donde se almacenan las peliculas
-        //obtener mapa de bits de la nueva img seleccionada
-        Bitmap bitmap = ((BitmapDrawable)imagenAgregarMusica.getDrawable()).getBitmap();
+    private void SubirNuevaImagen() {
+        //DECLARAMOS LA NUEVA IMAGEN A ACTUALIZAR
+        String nuevaImagen = System.currentTimeMillis()+".png";
+        /*referencia de almacenamiento, para que la nueva imagen se pueda guardar en esa carpeta*/
+        StorageReference mStorageReference2 = mStorageReference.child(RutaDeAlmacenamiento + nuevaImagen);
+        /*obtener mapa de bits de la nueva imagen seleccionada*/
+        Bitmap bitmap = ((BitmapDrawable)ImagenAgregarMusica.getDrawable()).getBitmap();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        //comprimir imagen
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        /*comprimir imagen*/
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
         byte [] data = byteArrayOutputStream.toByteArray();
-        UploadTask uploadTask = mStorageReference2.putBytes(data);
+        UploadTask uploadTask  = mStorageReference2.putBytes(data);
         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
                 Toast.makeText(AgregarMusica.this, "Nueva imagen cargada", Toast.LENGTH_SHORT).show();
-                // obtener la url de la imagen recien cargada
+                /*obtener la URL de la imagen recién cargada*/
                 Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                 while (!uriTask.isSuccessful());
-                Uri downoladUri = uriTask.getResult();
-                // actualizar la base de datos con nuevos datos
-                actualizarImgBD(downoladUri.toString());
+                Uri downloadUri = uriTask.getResult();
+                /*Actualizar la base de datos con nuevos datos*/
+                ActualizarImagenBD(downloadUri.toString());
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -189,29 +192,27 @@ public class AgregarMusica extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         });
-
     }
 
-    private void actualizarImgBD(final String nuevaImagen) {
-        final String nombreActualizar = nombreMusicaTv.getText().toString(); // por si desea cambiar el nombre
+    private void ActualizarImagenBD(final String NuevaImagen) {
+        final String nombreActualizar = NombreMusica.getText().toString();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        // el nombre tierne que coincidir con el de la base de datos, en este caso "MUSICA"
-        DatabaseReference databaseReference =  firebaseDatabase.getReference("MUSICA");
+        DatabaseReference databaseReference = firebaseDatabase.getReference("MUSICA");
 
-        // CONSULTA
-        // es el dato que no se puede repetir dos veces. (esto para mi esta mal, si hay dos nombres iguales dice que se borran). deberia tener un id
-        Query query = databaseReference.orderByChild("nombre").equalTo(rNombre);
+        //CONSULTA
+        /*Se añadió en video anterior*/
+        Query query = databaseReference.orderByChild("id").equalTo(rId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // DATOS A ACTUALIZAR. NOMBRE E IMAGEN
+                //DATOS A ACTUALIZAR
                 for (DataSnapshot ds : snapshot.getChildren()){
                     ds.getRef().child("nombre").setValue(nombreActualizar);
-                    ds.getRef().child("imagen").setValue(nuevaImagen);
+                    ds.getRef().child("imagen").setValue(NuevaImagen);
                 }
                 progressDialog.dismiss();
-                Toast.makeText(AgregarMusica.this, "Actualizado con exito", Toast.LENGTH_SHORT).show();
-                // vuelve a donde se listan las imagenes
+                //Actualización de base de datos
+                Toast.makeText(AgregarMusica.this, "Actualizado correctamente", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(AgregarMusica.this, MusicaA.class));
                 finish();
             }
@@ -221,96 +222,93 @@ public class AgregarMusica extends AppCompatActivity {
 
             }
         });
+
     }
 
-    private void subirImagen() {
+    private void SubirImagen() {
+        final String mNombre = NombreMusica.getText().toString();
 
-        //convertir a cadena el nombre de imagen para almacenarlo en la db
-        String mNombre = nombreMusicaTv.getText().toString();
-
-        // validar que el nombre y la imagen no sean nulos
-        if(mNombre.equals("") || rutaArchivoUri == null){
+        /*Validar que el nombre y la imagen no sean nulos*/
+        if (mNombre.equals("") || RutaArchivoUri==null){
             Toast.makeText(this, "Asigne un nombre o una imagen", Toast.LENGTH_SHORT).show();
         }
-        //por si se setea correctamente
-        else{
-            progressDialog.setTitle("Por favor espere");
-            progressDialog.setMessage("Subiendo imagen MUSICA ...");
+
+        else {
+            progressDialog.setTitle("Espere por favor");
+            progressDialog.setMessage("Subiendo Imagen MÚSICA ...");
             progressDialog.show();
             progressDialog.setCancelable(false);
+            StorageReference storageReference2 = mStorageReference.child(RutaDeAlmacenamiento+System.currentTimeMillis()+"."+ObtenerExtensionDelArchivo(RutaArchivoUri));
+            storageReference2.putFile(RutaArchivoUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-            //20230630_1234.PNG
-            //dentro de la carpeta storage de FareBase con el siguiente formato de nombre
-            StorageReference storageReference2 = mStorageReference.child(rutaAlmacenamiento+System.currentTimeMillis()+"."+obtenerExtensionDelArchivo(rutaArchivoUri));
+                            Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                            while (!uriTask.isSuccessful());
 
-            //envia imagen dentro del apartado del storage
-            storageReference2.putFile(rutaArchivoUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // intentar obtener la uri que se subio al firebase storage, para luego subirla en firebase database
-                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                    while(!uriTask.isSuccessful());
+                            Uri downloadURI = uriTask.getResult();
 
-                    Uri downloadURI = uriTask.getResult();
+                            String ID = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss",
+                                    Locale.getDefault()).format(System.currentTimeMillis());
+                            IdMusica.setText(ID);
 
+                            String mId = IdMusica.getText().toString();
+                            String mVista = VistaMusica.getText().toString();
+                            int VISTA = Integer.parseInt(mVista);
 
+                            Musica musica = new Musica(mNombre+"/"+mId,downloadURI.toString(),mNombre,VISTA);
+                            //MUSICA (ID, IMAGEN, NOMBRE, VISTAS)
+                            String ID_IMAGEN = DatabaseReference.push().getKey();
 
-                    // se convierte a string y luego a entero, para poder almacenar la info en la db
-                    String mVista = vistaMusicaTv.getText().toString();
-                    int VISTA = Integer.parseInt(mVista);
+                            DatabaseReference.child(ID_IMAGEN).setValue(musica);
 
-                    Musica musica = new Musica(downloadURI.toString(),mNombre,VISTA);
-                    String ID_IMAGEN = databaseReference.push().getKey();
+                            progressDialog.dismiss();
+                            Toast.makeText(AgregarMusica.this, "Subido Exitosamente", Toast.LENGTH_SHORT).show();
 
-                    // los lista segun el id del imagen
-                    databaseReference.child(ID_IMAGEN).setValue(musica);
+                            startActivity(new Intent(AgregarMusica.this, MusicaA.class));
+                            finish();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(AgregarMusica.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.setTitle("Publicando");
+                            progressDialog.setCancelable(false);
+                        }
+                    });
 
-                    progressDialog.dismiss();
-                    Toast.makeText(AgregarMusica.this, "Subido exitosamente", Toast.LENGTH_SHORT).show();
-
-                    startActivity(new Intent(AgregarMusica.this, MusicaA.class));
-                    finish();
-
-
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    progressDialog.dismiss();
-                    Toast.makeText(AgregarMusica.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                    progressDialog.setTitle("Publicando");
-                    progressDialog.setCancelable(false);
-                }
-            });
         }
+
     }
 
-    //obtener extension (formato) de la imagen .jpg / .png
-    private String obtenerExtensionDelArchivo(Uri uri){
+    /*Obtenemos la extensión de una image .jpg / .png */
+    private String ObtenerExtensionDelArchivo(Uri uri){
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
-    // obtener imagen de galeria
-    private ActivityResultLauncher<Intent> obtenerImagenGaleria = registerForActivityResult(
+    /*Obtener imagen de galería*/
+    private ActivityResultLauncher<Intent> ObtenerImagenGaleria = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    //manejar el resultado de nuestro intent
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        //seleccion de imagen
+                    /*Manejar el resultado de nuestro intent*/
+                    if (result.getResultCode() == Activity.RESULT_OK){
+                        //Selección de imagen
                         Intent data = result.getData();
-                        //obtener uri de imagen
-                        rutaArchivoUri = data.getData();
-                        imagenAgregarMusica.setImageURI(rutaArchivoUri);
-                    }else{
+                        //Obtener uri de imagen
+                        RutaArchivoUri = data.getData();
+                        ImagenAgregarMusica.setImageURI(RutaArchivoUri);
+                    }
+                    else {
                         Toast.makeText(AgregarMusica.this, "Cancelado", Toast.LENGTH_SHORT).show();
                     }
                 }

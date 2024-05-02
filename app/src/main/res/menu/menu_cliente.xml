@@ -30,6 +30,11 @@
                 android:id="@+id/Compartir"
                 android:title="@string/Compartir"
                 android:icon="@drawable/compartir_ico"/>
+
+            <item
+                android:id="@+id/Administrador"
+                android:title="@string/Administrador"
+                android:icon="@drawable/administrador_ico"/>
         </menu>
 
     </item>

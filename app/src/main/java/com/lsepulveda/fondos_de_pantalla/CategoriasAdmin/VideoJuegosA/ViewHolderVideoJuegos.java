@@ -65,14 +65,14 @@ public class ViewHolderVideoJuegos extends RecyclerView.ViewHolder {
         String vistaString = String.valueOf(vista);
         vista_VideoJuegos.setText(vistaString);
 
-        // controlar posibles errore
+        // controlar posibles errores
         try{
             //si la img fue traida exitosamente
-            Picasso.get().load(imagen).into(imagen_VideoJuegos);
+            Picasso.get().load(imagen).placeholder(R.drawable.categoria).into(imagen_VideoJuegos);
         }
         catch (Exception e){
             //si la img no se pudo traer
-            Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            Picasso.get().load(R.drawable.categoria).into(imagen_VideoJuegos);
         }
 
     }

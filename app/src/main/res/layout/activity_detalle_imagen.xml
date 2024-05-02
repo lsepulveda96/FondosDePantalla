@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:background="#fff"
+    tools:context=".DetalleCliente.DetalleImagen">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Imagen -->
+        <ImageView
+            android:id="@+id/imagenDetalle"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/detalle_imagen"
+            android:layout_gravity="center"/>
+
+        <!-- TXT -->
+        <TextView
+            android:text="@string/nombreImagenTXT"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- nombre de la imagen -->
+        <TextView
+            android:id="@+id/nombreImagenDetalle"
+            android:text="@string/NombreImagenDetalle"
+            android:textColor="#000"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <!-- Vista que ha obtenido la imagen -->
+            <TextView
+                android:id="@+id/vistaDetalle"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:textColor="#000"
+                android:text="@string/VistaDetalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <!-- TXT -->
+            <TextView
+                android:id="@+id/VisualizacionTXT"
+                android:textSize="15sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#000"
+                android:text="@string/VisualizacionTXT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="18dp"
+        android:padding="8dp"
+        fab:menu_animationDelayPerItem="55"
+        fab:menu_backgroundColor="@android:color/transparent"
+        fab:menu_buttonSpacing="0dp"
+        fab:menu_colorNormal="#34495E"
+        fab:menu_colorPressed="#34495E"
+        fab:menu_colorRipple="#99d4d4d4"
+        fab:menu_fab_size="normal"
+        fab:menu_icon="@drawable/fab_add"
+        fab:menu_labels_cornerRadius="3dp"
+        fab:menu_labels_ellipsize="none"
+        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        fab:menu_labels_maxLines="1"
+        fab:menu_labels_position="left"
+        fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        fab:menu_labels_showShadow="true"
+        fab:menu_labels_singleLine="false"
+        fab:menu_labels_textColor="#fff"
+        fab:menu_labels_textSize="15sp"
+        fab:menu_openDirection="up"
+        fab:menu_shadowColor="#848484"
+        fab:menu_shadowRadius="4dp"
+        fab:menu_shadowXOffset="1dp"
+        fab:menu_shadowYOffset="4dp"
+        fab:menu_showShadow="true">
+
+        <!-- Descargar imagen -->
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabDescargar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/descargar_ico"
+            app:fab_colorNormal="#9B59B6"
+            app:fab_colorPressed="#9B59B6"
+            app:fab_label="Descargar"
+            app:fab_size="mini" />
+
+
+        <!-- compartir imagen -->
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabCompartir"
+            app:fab_size="mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/compartir_img_ico"
+            app:fab_colorNormal="#F39C12"
+            app:fab_colorPressed="#F39C12"
+            app:fab_label="Compartir"/>
+
+
+        <!-- establecer imagen -->
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabEstablecer"
+            app:fab_size="mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/establecer_ico"
+            app:fab_colorNormal="#1ABC9C"
+            app:fab_colorPressed="#1ABC9C"
+            app:fab_label="Establecer"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+</RelativeLayout>

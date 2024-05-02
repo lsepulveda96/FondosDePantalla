@@ -14,6 +14,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.lsepulveda.fondos_de_pantalla.FragmentosCliente.AcercaDeCliente;
 import com.lsepulveda.fondos_de_pantalla.FragmentosCliente.CompartirCliente;
 import com.lsepulveda.fondos_de_pantalla.FragmentosCliente.InicioCliente;
+import com.lsepulveda.fondos_de_pantalla.FragmentosCliente.Login_admin;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -62,6 +63,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.Compartir:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_contanier,
                         new CompartirCliente()).commit();
+                break;
+            case R.id.Administrador:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_contanier,
+                        new Login_admin()).commit();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

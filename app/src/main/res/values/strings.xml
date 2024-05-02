@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Fondos_de_pantalla</string>
+    <string name="app_name">Wallpapers Free</string>
+    <string name="app_name_descripcion">Descarga, Comparte y Establece</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -18,6 +19,7 @@
     <string name="MasOpcionesTxt">Mas opciones</string>
     <string name="Acercade">Acerca de</string>
     <string name="Compartir">Compartir</string>
+    <string name="Administrador">Administrador</string>
 
     <string name="Acceder">Acceder</string>
 
@@ -38,7 +40,11 @@
 
 
     <!--Categorias-->
-    <string name="EligeUnaCategoriaTXT">Elige Categoria</string>
+    <string name="FechaAdmin"> -- </string>
+    <string name="BienvenidoTXT">Bienvenido a: </string>
+    <string name="NombreTXT"> -- </string>
+    <string name="EligeUnaCategoriaTXT">Elige una Categoria</string>
+
     <string name="Peliculas">Peliculas</string>
     <string name="Series">Series</string>
     <string name="Musica">Musica</string>
@@ -50,6 +56,7 @@
 
 
     <!-- Agregar peliculas-->
+    <string name="IdPeliculas"> -- </string>
     <string name="NombreTXTPeliculas">Nombre de imagenes</string>
     <string name="NombrePeliculas">Escriba nombre aqui</string>
     <string name="VistaPeliculas">0</string>
@@ -57,18 +64,21 @@
 
 
     <!-- Agregar musica-->
+    <string name="IdMusica"> -- </string>
     <string name="NombreTXTMusica">Nombre de imagenes</string>
     <string name="NombreMusica">Escriba nombre aqui</string>
     <string name="VistaMusica">0</string>
     <string name="PublicarMusica">Publicar</string>
 
     <!-- Agregar serie-->
+    <string name="IdSerie"> -- </string>
     <string name="NombreTXTSerie">Nombre de imagenes</string>
     <string name="NombreSerie">Escriba nombre aqui</string>
     <string name="VistaSerie">0</string>
     <string name="PublicarSerie">Publicar</string>
 
     <!-- Agregar videojuegos-->
+    <string name="IdVideojuegos"> -- </string>
     <string name="NombreTXTVideoJuegos">Nombre de imagenes</string>
     <string name="NombreVideoJuegos">Escriba nombre aqui</string>
     <string name="VistaVideoJuegos">0</string>
@@ -113,7 +123,7 @@
     <string name="ACTUALIZARPASS">Actualizar Password</string>
     <string name="ACTUALIZARDATOS">Actualizar Datos</string>
 
-<!--    cambiar contrsena -->
+    <!--    cambiar contrsena -->
     <string name="MisCredencialesTXT">Mis Credenciales</string>
     <string name="PassActualTXT">Contrasena Actual: </string>
     <string name="PassActual"> -- </string>
@@ -122,6 +132,69 @@
     <string name="CAMBIARPASSBTN"> CAMBIAR CONTRASENA </string>
     <string name="IRINICIOBTN"> IR INICIO </string>
     <string name="NOTATXT">Nota: Si cambia la contrasena, se cerrara sesion automaticamente </string>
+
+    <string name="NombresADMIN">Nombres</string>
+    <string name="CorreoADMIN">Correo Electronico</string>
+
+    <string name="buscar_administrador">Buscar</string>
+
+    <!-- detalle administrador -->
+    <string name="DetalleTXT">Detalle del administrador</string>
+    <string name="UidDetalleAdmin">UID</string>
+    <string name="NombresDetalleAdmin">NOMBRES</string>
+    <string name="ApellidosDetalleAdmin">APELLIDOS</string>
+    <string name="CorreoDetalleAdmin">CORREO</string>
+    <string name="EdadDetalleAdmin">EDAD</string>
+
+
+    <string name="CategoriasTXT">Categorias</string>
+    <string name="NombreCategoriaD"> -- </string> <!-- subidas desde dispositivo -->
+    <string name="MasCategoriasTXT">Mas Categorias</string>
+    <string name="NombreCategoriaF"> -- </string> <!-- subidas desde firebase -->
+
+    <string name="InfoTXT">Disfruta de nuestra app</string> <!-- subidas desde firebase -->
+
+    <!-- detalle imagen -->
+    <string name="nombreImagenTXT">Nombre de imagen</string>
+    <string name="NombreImagenDetalle"> -- </string>
+    <string name="VisualizacionTXT">Visualizaciones </string>
+    <string name="VistaDetalle"> -- </string>
+
+    <!-- imagen cat firebase elegida -->
+    <string name="NombreImg_Cat_Elegida"> -- </string>
+    <string name="Vista_Img_Cat_Elegida"> -- </string>
+
+    <string name="TituloInformativoTXT"> -- </string>
+
+    <string name="Fecha"> -- </string>
+
+    <!-- Acerca de aplicacion -->
+    <string name="AcercaDeApp">Acerca de</string>
+    <string name="InfoDesarrollador">Desarrollado por: Luciano Sepulveda</string>
+    <string name="InfoCorreo">sluuciano96@gmail.com</string>
+    <string name="InfoVersion">Version 1.0</string>
+
+    <!-- Compartir aplicacion -->
+    <string name="AyudanosTXT">Ayudanos a crecer compartiendo</string>
+    <string name="BotonCompartir">Compartir app</string>
+
+
+    <!-- Apartado administradores -->
+    <string name="SoloAdminTXT">Solo para administradores</string>
+
+    <!-- Animaciones -->
+    <!-- Activar permisos -->
+    <string name="AcvtivePermisos">Active los permisos de almacenamiento</string>
+    <string name="OkPermisos">Ok</string>
+
+    <!-- Descarga exitosa -->
+    <string name="DescargaExitosaTXT">Descarga exitosa</string>
+    <string name="GuardadoEnTXT">Guardado en la carpeta /MI APLICACION/</string>
+    <string name="OkDescarga">Ok</string>
+
+    <!-- Establecer como fondo de pantalla -->
+    <string name="EstablecidoTXT">Se establecio como fondo de pantalla</string>
+    <string name="OkEstablecido">Ok</string>
 
 
 </resources>

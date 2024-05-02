@@ -68,11 +68,11 @@ public class ViewHolderMusica extends RecyclerView.ViewHolder {
         // controlar posibles errore
         try{
             //si la img fue traida exitosamente
-            Picasso.get().load(imagen).into(imagen_Musica);
+            Picasso.get().load(imagen).placeholder(R.drawable.categoria).into(imagen_Musica);
         }
         catch (Exception e){
             //si la img no se pudo traer
-            Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            Picasso.get().load(R.drawable.categoria).into(imagen_Musica);
         }
 
     }

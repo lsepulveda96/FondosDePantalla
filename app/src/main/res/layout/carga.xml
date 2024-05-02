@@ -14,19 +14,32 @@
         android:orientation="vertical">
 
         <!--imagen de carga-->
-        <androidx.appcompat.widget.AppCompatImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:src="@drawable/carga" />
+            android:src="@drawable/wallpapers_free" />
 
         <!--nombre de la app-->
         <TextView
             android:id="@+id/app_name"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="25sp"
             android:gravity="center"
             android:text="@string/app_name"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+        <!--descripcion de la app-->
+        <TextView
+            android:id="@+id/app_name_descripcion"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25sp"
+            android:gravity="center"
+            android:text="@string/app_name_descripcion"
             android:textColor="#fff"
             android:textSize="20sp" />
 

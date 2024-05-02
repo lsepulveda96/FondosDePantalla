@@ -97,6 +97,7 @@ public class SeriesA extends AppCompatActivity {
 
                     @Override
                     public void onItemLongClick(View view, int position) {
+                        final String id = getItem(position).getId();
                         final String nombre = getItem(position).getNombre();
                         final String imagen = getItem(position).getImagen();
 
@@ -112,13 +113,14 @@ public class SeriesA extends AppCompatActivity {
                                 if(i==0){
                                     // pasan los datos a la actividad pelicula
                                     Intent intent = new Intent(SeriesA.this, AgregarSerie.class);
+                                    intent.putExtra("IdEnviado", id);
                                     intent.putExtra("NombreEnviado", nombre);
                                     intent.putExtra("ImagenEnviada", imagen);
                                     intent.putExtra("VistaEnviada", vistaString);
                                     startActivity(intent);
                                 }
                                 if(i==1){
-                                    eliminarDatos(nombre, imagen);
+                                    eliminarDatos(id, imagen);
                                 }
                             }
                         });
@@ -137,7 +139,7 @@ public class SeriesA extends AppCompatActivity {
         recyclerViewSerie.setAdapter(firebaseRecyclerAdapter);
     }
 
-    private void eliminarDatos(final String nombreActual, final String imagenActual){
+    private void eliminarDatos(final String idActual, final String imagenActual){
         AlertDialog.Builder builder = new AlertDialog.Builder(SeriesA.this);
         builder.setTitle("Eliminar");
         builder.setMessage("Desea eliminar imagen?");
@@ -147,7 +149,7 @@ public class SeriesA extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 // eliminar imagen de la base de datos
-                Query query = mRef.orderByChild("nombre").equalTo(nombreActual);
+                Query query = mRef.orderByChild("id").equalTo(idActual);
                 //metodo que escucha si se elimina una img
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -192,6 +194,15 @@ public class SeriesA extends AppCompatActivity {
 
         // sin esta linea no se va a mostrar el cuadro de dialogo
         builder.create().show();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // firebaseRA va a estar escuchando si las imagenes fueron traidas con exito
+        if(firebaseRecyclerAdapter != null){
+            firebaseRecyclerAdapter.startListening();
+        } //sino no muestra ninguna imagen
     }
 
     @Override

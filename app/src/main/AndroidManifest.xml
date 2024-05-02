@@ -11,11 +11,36 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icono_fondos_pantalla"
+        android:roundIcon="@mipmap/icono_fondos_pantalla_round"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".CategoriasClienteFirebase.ListaCategoriaFirebase"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleCliente.DetalleImagen"
+            android:exported="false" />
+        <activity
+            android:name=".Categorias.ControladorCD"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasCliente.VideoJuegosCliente"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasCliente.MusicaCliente"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasCliente.SeriesCliente"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasCliente.PeliculasCliente"
+            android:exported="false" />
+        <activity
+            android:name=".Detalle.DetalleAdministrador"
+            android:exported="false" />
         <activity
             android:name=".FragmentosAdministrador.Cambio_Pass"
             android:exported="false" />
@@ -62,7 +87,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity> <!-- agregamos el proveedor de archivos con el propio paquete -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.lsepulveda.fondos_de_pantalla.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/files_path"></meta-data>
+        </provider>
+
+
     </application>
 
 </manifest>

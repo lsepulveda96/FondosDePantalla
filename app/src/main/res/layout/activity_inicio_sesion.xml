@@ -44,6 +44,8 @@
             <EditText
                 android:id="@+id/Correo"
                 android:inputType="textEmailAddress"
+                android:drawableStart="@drawable/correo_et"
+                android:drawablePadding="5dp"
                 android:hint="@string/Correo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -58,6 +60,8 @@
             <EditText
                 android:hint="@string/Password"
                 android:id="@+id/Password"
+                android:drawableStart="@drawable/pass_et"
+                android:drawablePadding="5dp"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -67,6 +71,8 @@
         <Button
             android:id="@+id/Acceder"
             android:text="@string/Acceder"
+            android:background="@drawable/btn_personalizado_dos"
+            android:textColor="#fff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

@@ -13,11 +13,65 @@
         android:orientation="vertical"
         android:padding="10dp">
 
+        <!-- fecha -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/calendario_ico"/>
+
+            <TextView
+                android:id="@+id/fechaAdmin"
+                android:text="@string/FechaAdmin"
+                android:layout_marginStart="5dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- bienvenido -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/bienvenido"/>
+
+            <TextView
+                android:text="@string/BienvenidoTXT"
+                android:layout_marginStart="5dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/nombreTXT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:text="@string/NombreTXT"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
         <TextView
             android:text="@string/EligeUnaCategoriaTXT"
-            android:textColor="#000"
+            android:textColor="#086A87"
+            android:layout_marginTop="3dp"
+            android:textStyle="bold"
             android:gravity="center"
-            android:textSize="25sp"
+            android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -40,9 +94,9 @@
                 android:layout_weight="1">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:src="@drawable/peliculas"/>
+                    android:layout_width="80dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ico_peliculas"/>
 
                 <Button
                     android:text="@string/Peliculas"
@@ -64,9 +118,9 @@
                 android:layout_weight="1">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:src="@drawable/series"/>
+                    android:layout_width="80dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ico_series"/>
 
                 <Button
                     android:text="@string/Series"
@@ -101,9 +155,9 @@
                 android:layout_weight="1">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:src="@drawable/musica"/>
+                    android:layout_width="80dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ico_musica"/>
 
                 <Button
                     android:background="@drawable/btn_personalizado"
@@ -125,9 +179,9 @@
                 android:layout_weight="1">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:src="@drawable/videojuegos"/>
+                    android:layout_width="80dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ico_videojuegos"/>
 
                 <Button
                     android:background="@drawable/btn_personalizado"

@@ -25,6 +25,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
+
+            <!-- TXT-->
+            <TextView
+                android:id="@+id/IdMusica"
+                android:text="@string/IdMusica"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
             <!-- Nombre de la imagen -->
             <EditText
                 android:id="@+id/NombreMusica"

@@ -55,5 +55,8 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:8.0.0' // para traer las imagenes leidas desde firebase
 
     implementation 'de.hdodenhof:circleimageview:3.0.1' // IMAGEN CIRCULAR
+
+    implementation 'com.github.clans:fab:1.6.4' // Boton flotante
+
 }
 

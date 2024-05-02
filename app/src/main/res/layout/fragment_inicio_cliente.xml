@@ -1,16 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".FragmentosCliente.InicioCliente">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="INICIO CLIENTE"
-        android:gravity="center"
-        android:textSize="25dp"/>
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/calendario_ico"/>
+
+                <TextView
+                    android:id="@+id/fecha"
+                    android:text="@string/Fecha"
+                    android:layout_marginStart="5dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <!-- categorias txt -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="10dp"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:text="@string/CategoriasTXT"/>
+
+            <!-- recyclerView categorias dispositivo -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewCategoriasD"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"/>
+
+            <!-- mas categorias txt -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginStart="10dp"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:text="@string/MasCategoriasTXT"/>
+
+            <!-- recyclerView categorias firebase -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewCategoriasF"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"/>
+
+
+            <!-- info txt -->
+            <TextView
+                android:text="@string/InfoTXT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginStart="10dp"
+                android:textColor="#000"
+                android:textSize="20sp"
+                />
+
+            <!-- Recycler vewi Apartado informativo-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewInfo"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="5dp"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+
+</ScrollView>

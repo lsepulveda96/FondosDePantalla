@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class Carga extends AppCompatActivity {
 
-    TextView app_name, desarrollador;
+    TextView app_name, app_name_descripcion, desarrollador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class Carga extends AppCompatActivity {
         setContentView(R.layout.carga);
 
         app_name = findViewById(R.id.app_name);
+        app_name_descripcion = findViewById(R.id.app_name_descripcion);
         desarrollador = findViewById(R.id.desarrollador);
 
         // Para cambio de letra
@@ -40,6 +41,7 @@ public class Carga extends AppCompatActivity {
         },DURACION);
 
         app_name.setTypeface(tf);
+        app_name_descripcion.setTypeface(tf);
         desarrollador.setTypeface(tf);
     }
 }

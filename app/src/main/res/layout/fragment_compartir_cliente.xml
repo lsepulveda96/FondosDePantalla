@@ -1,16 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FragmentosCliente.CompartirCliente">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="COMPARTIR"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="25dp"/>
+        android:padding="10dp"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            android:text="@string/AyudanosTXT"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            app:lottie_imageAssetsFolder="assets"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="comparte.json"
+            android:layout_width="300dp"
+            android:layout_height="300dp"/>
+
+
+        <Button
+            android:id="@+id/BotonCompartir"
+            android:textColor="#fff"
+            android:background="@drawable/btn_personalizado_dos"
+            android:drawableStart="@drawable/ico_compartir_app"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="15dp"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:text="@string/BotonCompartir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>

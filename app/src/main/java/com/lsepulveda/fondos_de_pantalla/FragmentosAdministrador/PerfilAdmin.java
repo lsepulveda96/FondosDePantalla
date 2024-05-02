@@ -16,14 +16,17 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -142,6 +145,13 @@ public class PerfilAdmin extends Fragment {
             }
         });
 
+        ACTUALIZARDATOS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editarDatos();
+            }
+        });
+
         FOTOPERFILIMG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,6 +159,200 @@ public class PerfilAdmin extends Fragment {
             }
         });
         return view;
+    }
+
+    private void editarDatos() {
+        // MOSTRAR UN DIALOGO QUE CONTIENE
+        // 1- EDITAR NOMBRES
+        // 2- EDITAR APELLIDOS
+        // 3- EDITAR EDAD
+
+        String [] opciones = {"Editar nombres", "Editar apellidos", "Editar edad"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Elegir opcion");
+        builder.setItems(opciones, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(i==0){
+                    //Editar nombres
+                    editarNombres();
+                }
+                else if(i==1){
+                    //Editar apellidos
+                    editarApellidos();
+                }
+                else if(i==2){
+                    //Editar edad
+                    editarEdad();
+                }
+            }
+        });
+        builder.create().show();
+
+    }
+
+    private void editarNombres() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Actualizar informacion: ");
+        LinearLayoutCompat linearLayoutCompat = new LinearLayoutCompat(getActivity());
+        linearLayoutCompat.setOrientation(LinearLayoutCompat.VERTICAL);
+        linearLayoutCompat.setPadding(10,10,10,10);
+        EditText editText = new EditText(getActivity());
+        editText.setHint("Ingrese nuevo dato...");
+        editText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS|InputType.TYPE_TEXT_FLAG_AUTO_CORRECT);
+        // anade el edit text dentro del linear layout
+        linearLayoutCompat.addView(editText);
+        // set linearLayout dentro del alert dialog
+        builder.setView(linearLayoutCompat);
+        builder.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String nuevoDato = editText.getText().toString().trim(); // toma los datos del edit text
+                //si apreta actualizar y los datos estan vacios
+                if(!nuevoDato.equals("")){
+                    HashMap<String,Object> resultado = new HashMap<>();
+                    // el nuevo dato va a reemplazar al dato que contiene el atributo NOMBRES dentro de la db
+                    resultado.put("NOMBRES", nuevoDato);
+                    BASE_DE_DATOS_ADMINISTRADORES.child(user.getUid()).updateChildren(resultado)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(getActivity(), "Dato actualizado", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // gestionar el error
+                                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                }else{
+                    Toast.makeText(getActivity(), "Campo vacio", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // si el admin desea cancelar y no quiere actualizar
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getActivity(), "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // si no se escribe, al momento de editar nombres no se va a visualziar el cartel
+        builder.create().show();
+
+    }
+
+    private void editarApellidos() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Actualizar informacion: ");
+        LinearLayoutCompat linearLayoutCompat = new LinearLayoutCompat(getActivity());
+        linearLayoutCompat.setOrientation(LinearLayoutCompat.VERTICAL);
+        linearLayoutCompat.setPadding(10,10,10,10);
+        EditText editText = new EditText(getActivity());
+        editText.setHint("Ingrese nuevo dato...");
+        editText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS|InputType.TYPE_TEXT_FLAG_AUTO_CORRECT);
+        // anade el edit text dentro del linear layout
+        linearLayoutCompat.addView(editText);
+        // set linearLayout dentro del alert dialog
+        builder.setView(linearLayoutCompat);
+        builder.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String nuevoDato = editText.getText().toString().trim(); // toma los datos del edit text
+                //si apreta actualizar y los datos estan vacios
+                if(!nuevoDato.equals("")){
+                    HashMap<String,Object> resultado = new HashMap<>();
+                    // el nuevo dato va a reemplazar al dato que contiene el atributo NOMBRES dentro de la db
+                    resultado.put("APELLIDOS", nuevoDato);
+                    BASE_DE_DATOS_ADMINISTRADORES.child(user.getUid()).updateChildren(resultado)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(getActivity(), "Dato actualizado", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // gestionar el error
+                                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                }else{
+                    Toast.makeText(getActivity(), "Campo vacio", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // si el admin desea cancelar y no quiere actualizar
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getActivity(), "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // si no se escribe, al momento de editar nombres no se va a visualziar el cartel
+        builder.create().show();
+    }
+
+    private void editarEdad() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Actualizar informacion: ");
+        LinearLayoutCompat linearLayoutCompat = new LinearLayoutCompat(getActivity());
+        linearLayoutCompat.setOrientation(LinearLayoutCompat.VERTICAL);
+        linearLayoutCompat.setPadding(10,10,10,10);
+        EditText editText = new EditText(getActivity());
+        editText.setHint("Ingrese nuevo dato...");
+        editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+        // anade el edit text dentro del linear layout
+        linearLayoutCompat.addView(editText);
+        // set linearLayout dentro del alert dialog
+        builder.setView(linearLayoutCompat);
+        builder.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String nuevoDato = editText.getText().toString().trim(); // toma los datos del edit text
+                //si apreta actualizar y los datos estan vacios
+                if(!nuevoDato.equals("")){
+                    int nuevoDatoEntero = Integer.parseInt(nuevoDato);
+                    HashMap<String,Object> resultado = new HashMap<>();
+                    // el nuevo dato va a reemplazar al dato que contiene el atributo NOMBRES dentro de la db
+                    resultado.put("EDAD", nuevoDatoEntero);
+                    BASE_DE_DATOS_ADMINISTRADORES.child(user.getUid()).updateChildren(resultado)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(getActivity(), "Dato actualizado", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // gestionar el error
+                                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                }else{
+                    Toast.makeText(getActivity(), "Campo vacio", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // si el admin desea cancelar y no quiere actualizar
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getActivity(), "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // si no se escribe, al momento de editar nombres no se va a visualziar el cartel
+        builder.create().show();
     }
 
     private void cambiarImagenPerfilAdministrador() {
